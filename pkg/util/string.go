@@ -1,6 +1,7 @@
 package util
 
 import (
+	"fmt"
 	"math/rand"
 )
 
@@ -30,4 +31,21 @@ func RandString(n int) string {
 	}
 
 	return string(b)
+}
+
+// RandHex returns a random hex of length n.
+func RandHex(n int) string {
+
+	rng := rand.New(randx)
+
+	// Define the minimum and maximum values for the random integer
+	minValue := 0x1000000000
+	maxValue := 0xFFFFFFFFFF
+
+	// Generate a random integer between minValue and maxValue (inclusive)
+	randomInt := rng.Intn(maxValue-minValue+1) + minValue
+
+	hexString := fmt.Sprintf("%X", randomInt)
+
+	return hexString
 }
